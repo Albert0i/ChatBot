@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Track Tab Close</title>
+</head>
+<body onbeforeunload="return exitFunction()">
+    <p>
+        <input type="text" id="name" name="name" value="AAA" />
+    </p>
+    <p>
+        <input type="hidden" id="saveStatus" name="saveStatus" value="unsaved" />
+    </p>
+    <p>
+        <button onclick="toggleSaveStatus()">Toggle Save Status</button>
+    </p>
+    <p>
+        <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/beforeunload_event" target="_blank">Window: beforeunload event</a>
+    </p>
+    <script>
+        const saveStatus = document.getElementById("saveStatus")
+        const nameInput = document.getElementById("name")
+        
+        function toggleSaveStatus() {            
+            saveStatus.value = saveStatus.value === "unsaved" ? "saved" : "unsaved";
+        }
+
+        function exitFunction() {
+            if (saveStatus.value === "saved") 
+                return null;
+            else 
+                return true;
+        }
+    </script>
+</body>
+</html>
