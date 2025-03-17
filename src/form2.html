@@ -7,7 +7,7 @@
 </head>
 <body onbeforeunload="return exitFunction()">
     <p>
-        <input type="text" id="name" name="name" value="AAA" />
+        <input type="text" id="name" name="name" placeholder="Your name" autofocus />
     </p>
     <p>
         <input type="hidden" id="saveStatus" name="saveStatus" value="unsaved" />
@@ -16,8 +16,8 @@
         <button onclick="toggleSaveStatus()">Toggle Save Status</button>
     </p>
     <p>
-        <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/beforeunload_event" target="_blank">Window: beforeunload event</a>
-    </p>
+        <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/beforeunload_event" target="_blank" onclick="toggleSaveStatus()">Toggle Save Status</a>
+    </p>    
     <script>
         const saveStatus = document.getElementById("saveStatus")
         const nameInput = document.getElementById("name")
