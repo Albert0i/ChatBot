@@ -20,3 +20,8 @@ const res = await completion.generateCompletion(input, {
     maxTokens: 100
 });
 console.log("Completion: " + res);
+
+/*
+   Text Completion
+   https://github.com/withcatai/node-llama-cpp/blob/master/docs/guide/text-completion.md
+*/

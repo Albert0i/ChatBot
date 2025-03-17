@@ -35,3 +35,8 @@ console.log("query:", query);
 console.log("Top document:", topDocument.document);
 console.log("Second document:", secondDocument.document);
 console.log("Ranked documents:", rankedDocuments);
+
+/*
+   Using Embedding
+   https://github.com/withcatai/node-llama-cpp/blob/master/docs/guide/embedding.md
+*/

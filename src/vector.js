@@ -18,3 +18,8 @@ console.log("Text:", text);
 
 const embedding = await context.getEmbeddingFor(text);
 console.log("Embedding vector:", embedding.vector);
+
+/*
+   Using Embedding
+   https://github.com/withcatai/node-llama-cpp/blob/master/docs/guide/embedding.md
+*/

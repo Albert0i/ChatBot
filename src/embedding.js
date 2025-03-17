@@ -67,3 +67,8 @@ const topSimilarDocument = similarDocuments[0];
 
 console.log("query:", query);
 console.log("Document:", topSimilarDocument);
+
+/*
+   Using Embedding
+   https://github.com/withcatai/node-llama-cpp/blob/master/docs/guide/embedding.md
+*/
