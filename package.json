@@ -9,6 +9,7 @@
   "scripts": {
     "start": "node src/chatbot.js",
     "summarize": "node src/summarize.js",
+    "completion": "node src/completion.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
