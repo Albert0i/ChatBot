@@ -6,7 +6,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const llama = await getLlama();
 const model = await llama.loadModel({
-    modelPath: path.join(__dirname, "models", "Meta-Llama-3.1-8B-Instruct-Q3_K_M.gguf")
+    modelPath: path.join(__dirname, "models", "Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf")
 });
 const context = await model.createContext();
 const session = new LlamaChatSession({
