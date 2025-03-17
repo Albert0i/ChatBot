@@ -11,6 +11,8 @@
     "summarize": "node src/summarize.js",
     "completion": "node src/completion.js",
     "embedding": "node src/embedding.js",
+    "vector": "node src/vector.js",
+    "reranking": "node src/reranking.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
