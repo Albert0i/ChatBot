@@ -67,19 +67,7 @@ Both tools have their strengths and are suited for different use cases. LangChai
 Each of these APIs has its own strengths and is suited for different use cases. Metal is optimized for Apple devices, CUDA is powerful for NVIDIA GPUs, and Vulkan offers cross-platform capabilities with low overhead.
 
 
-#### VI. 
-
-
-#### VII. 
-
-
-#### VIII. 
-
-
-#### IX. 
-
-
-#### X. Bibliography
+#### VI. Bibliography
 1. [node-llama-cpp](https://www.npmjs.com/package/node-llama-cpp)
 2. [node-llama-cpp docs](https://github.com/withcatai/node-llama-cpp/tree/master/docs)
 3. [node-llama-cpp v3.md](https://github.com/withcatai/node-llama-cpp/blob/master/docs/blog/v3.md)
