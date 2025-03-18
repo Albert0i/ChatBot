@@ -81,7 +81,7 @@ Each of these APIs has its own strengths and is suited for different use cases. 
 #### X. Bibliography
 1. [node-llama-cpp](https://www.npmjs.com/package/node-llama-cpp)
 2. [node-llama-cpp docs](https://github.com/withcatai/node-llama-cpp/tree/master/docs)
-3. [v3.md](https://github.com/withcatai/node-llama-cpp/blob/master/docs/blog/v3.md)
+3. [node-llama-cpp v3.md](https://github.com/withcatai/node-llama-cpp/blob/master/docs/blog/v3.md)
 4. [White Nights, by Fyodor Dostoevsky](https://www.gutenberg.org/files/36034/36034-h/36034-h.htm)
 
 #### Epilogue
