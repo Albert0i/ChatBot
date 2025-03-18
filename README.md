@@ -88,7 +88,9 @@ Each of these APIs has its own strengths and is suited for different use cases. 
 7. [Getting Started](https://github.com/withcatai/node-llama-cpp/blob/master/docs/guide/index.md)
 8. [Choosing a Model](https://github.com/withcatai/node-llama-cpp/blob/master/docs/guide/choosing-a-model.md#model-purpose)
 9. [Downloading Models](https://github.com/withcatai/node-llama-cpp/blob/master/docs/guide/downloading-models.md#model-uris)
-10. [White Nights, by Fyodor Dostoevsky](https://www.gutenberg.org/files/36034/36034-h/36034-h.htm)
+10. [Using Function Calling](https://github.com/withcatai/node-llama-cpp/blob/master/docs/guide/function-calling.md)
+11. [Low Level API](https://github.com/withcatai/node-llama-cpp/blob/master/docs/guide/low-level-api.md)
+12. [White Nights, by Fyodor Dostoevsky](https://www.gutenberg.org/files/36034/36034-h/36034-h.htm)
 
 #### Epilogue
 

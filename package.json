@@ -13,6 +13,9 @@
     "finding": "node src/finding.js",
     "vector": "node src/vector.js",
     "reranking": "node src/reranking.js",
+    "schema": "node src/schema.js",
+    "function": "node src/function.js",
+    "raw": "node src/raw.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
