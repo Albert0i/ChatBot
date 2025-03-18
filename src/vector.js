@@ -21,5 +21,6 @@ console.log("Embedding vector:", embedding.vector);
 
 /*
    Using Embedding
+   Getting Raw Vectors
    https://github.com/withcatai/node-llama-cpp/blob/master/docs/guide/embedding.md
 */

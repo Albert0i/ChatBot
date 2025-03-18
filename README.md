@@ -82,7 +82,13 @@ Each of these APIs has its own strengths and is suited for different use cases. 
 1. [node-llama-cpp](https://www.npmjs.com/package/node-llama-cpp)
 2. [node-llama-cpp docs](https://github.com/withcatai/node-llama-cpp/tree/master/docs)
 3. [node-llama-cpp v3.md](https://github.com/withcatai/node-llama-cpp/blob/master/docs/blog/v3.md)
-4. [White Nights, by Fyodor Dostoevsky](https://www.gutenberg.org/files/36034/36034-h/36034-h.htm)
+4. [Using LlamaChatSession](https://github.com/withcatai/node-llama-cpp/blob/master/docs/guide/chat-session.md#function-calling)
+5. [Text Completion](https://github.com/withcatai/node-llama-cpp/blob/master/docs/guide/text-completion.md)
+6. [Using Embedding](https://github.com/withcatai/node-llama-cpp/blob/master/docs/guide/embedding.md#using-embedding)
+7. [Getting Started](https://github.com/withcatai/node-llama-cpp/blob/master/docs/guide/index.md)
+8. [Choosing a Model](https://github.com/withcatai/node-llama-cpp/blob/master/docs/guide/choosing-a-model.md#model-purpose)
+9. [Downloading Models](https://github.com/withcatai/node-llama-cpp/blob/master/docs/guide/downloading-models.md#model-uris)
+10. [White Nights, by Fyodor Dostoevsky](https://www.gutenberg.org/files/36034/36034-h/36034-h.htm)
 
 #### Epilogue
 

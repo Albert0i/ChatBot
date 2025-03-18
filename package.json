@@ -10,7 +10,7 @@
     "start": "node src/chatbot.js",
     "summarize": "node src/summarize.js",
     "completion": "node src/completion.js",
-    "embedding": "node src/embedding.js",
+    "finding": "node src/finding.js",
     "vector": "node src/vector.js",
     "reranking": "node src/reranking.js",
     "test": "echo \"Error: no test specified\" && exit 1"

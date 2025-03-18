@@ -38,5 +38,6 @@ console.log("Ranked documents:", rankedDocuments);
 
 /*
    Using Embedding
+   Reranking Documents
    https://github.com/withcatai/node-llama-cpp/blob/master/docs/guide/embedding.md
 */

@@ -70,5 +70,6 @@ console.log("Document:", topSimilarDocument);
 
 /*
    Using Embedding
+   Finding Relevant Documents
    https://github.com/withcatai/node-llama-cpp/blob/master/docs/guide/embedding.md
 */
