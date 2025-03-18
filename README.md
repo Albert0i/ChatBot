@@ -2,6 +2,7 @@
 
 
 #### Prologue 
+> The sky was so starry, so bright that, looking at it, one could not help asking oneself whether ill-humoured and capricious people could live under such a sky. 
 
 
 #### I. LangChain
@@ -93,6 +94,7 @@ Each of these APIs has its own strengths and is suited for different use cases. 
 12. [White Nights, by Fyodor Dostoevsky](https://www.gutenberg.org/files/36034/36034-h/36034-h.htm)
 
 #### Epilogue
+> My God, a whole moment of happiness! Is that too little for the whole of a man's life?
 
 
 ### EOF (2025/03/21)

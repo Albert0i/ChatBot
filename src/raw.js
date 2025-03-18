@@ -32,3 +32,8 @@ for await (const generatedToken of sequence.evaluate(tokens)) {
 
 const a1 = model.detokenize(res).split("USER:")[0];
 console.log("AI: " + a1.trim());
+
+/*
+   Low Level API
+   https://github.com/withcatai/node-llama-cpp/blob/master/docs/guide/low-level-api.md
+*/

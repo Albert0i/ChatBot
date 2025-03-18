@@ -47,3 +47,8 @@ console.log("User: " + q1);
 
 const a1 = await session.prompt(q1, {functions});
 console.log("AI: " + a1);
+
+/*
+   Using Function Calling
+   https://github.com/withcatai/node-llama-cpp/blob/master/docs/guide/function-calling.md
+*/
