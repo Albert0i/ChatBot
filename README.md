@@ -67,23 +67,7 @@ Both tools have their strengths and are suited for different use cases. LangChai
 Each of these APIs has its own strengths and is suited for different use cases. Metal is optimized for Apple devices, CUDA is powerful for NVIDIA GPUs, and Vulkan offers cross-platform capabilities with low overhead.
 
 
-#### VI. which RDBMS support storage of VECTOR? 
-Several relational database management systems (RDBMS) support the storage and querying of vector data, particularly through extensions or specific configurations. Here are some notable options:
-
-1. **PostgreSQL with pgvector**: PostgreSQL supports vector storage through the pgvector extension, which allows for storing and querying high-dimensional vectors. This is particularly useful for machine learning applications[1](https://docs.aws.amazon.com/prescriptive-guidance/latest/choosing-an-aws-vector-database-for-rag-use-cases/vector-db-options.html)[2](https://repost.aws/questions/QU1vlAz_S1QliLXTTYS-BTkA/vector-support-for-rds-mysql).
-
-2. **Amazon RDS for PostgreSQL**: Amazon RDS for PostgreSQL also supports the pgvector extension, enabling efficient storage and similarity searches on vector data[1](https://docs.aws.amazon.com/prescriptive-guidance/latest/choosing-an-aws-vector-database-for-rag-use-cases/vector-db-options.html)[2](https://repost.aws/questions/QU1vlAz_S1QliLXTTYS-BTkA/vector-support-for-rds-mysql).
-
-3. **Amazon Aurora PostgreSQL-Compatible Edition**: Similar to Amazon RDS, Amazon Aurora's PostgreSQL-Compatible Edition supports pgvector for vector storage and querying[2](https://repost.aws/questions/QU1vlAz_S1QliLXTTYS-BTkA/vector-support-for-rds-mysql).
-
-4. **Amazon OpenSearch Service**: While not a traditional RDBMS, Amazon OpenSearch Service supports vector search capabilities, making it suitable for applications requiring real-time data processing and analytics[1](https://docs.aws.amazon.com/prescriptive-guidance/latest/choosing-an-aws-vector-database-for-rag-use-cases/vector-db-options.html).
-
-5. **SQLite with sqlite-vec**: SQLite can be extended with sqlite-vec to support vector embeddings, providing a lightweight option for vector storage[3](https://dev.to/jonbiz/implementing-a-rag-system-inside-an-rdbms-sqlite-and-postgres-with-sqlite-vec-pgvector-4d5h).
-
-These options offer various features and capabilities, allowing you to choose based on your specific requirements and existing infrastructure. 
-
-
-#### VII. Bibliography
+#### VI. Bibliography
 1. [node-llama-cpp](https://www.npmjs.com/package/node-llama-cpp)
 2. [node-llama-cpp docs](https://github.com/withcatai/node-llama-cpp/tree/master/docs)
 3. [node-llama-cpp v3.md](https://github.com/withcatai/node-llama-cpp/blob/master/docs/blog/v3.md)
