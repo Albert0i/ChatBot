@@ -139,7 +139,10 @@ Each of these APIs has its own strengths and is suited for different use cases. 
 9. [Downloading Models](https://github.com/withcatai/node-llama-cpp/blob/master/docs/guide/downloading-models.md#model-uris)
 10. [Using Function Calling](https://github.com/withcatai/node-llama-cpp/blob/master/docs/guide/function-calling.md)
 11. [Low Level API](https://github.com/withcatai/node-llama-cpp/blob/master/docs/guide/low-level-api.md)
-12. [White Nights, by Fyodor Dostoevsky](https://www.gutenberg.org/files/36034/36034-h/36034-h.htm)
+12. [Introducing sqlite-vec v0.1.0: a vector search SQLite extension that runs everywhere](https://alexgarcia.xyz/blog/2024/sqlite-vec-stable-release/index.html)
+13. [sqlite-vec](https://github.com/asg017/sqlite-vec)
+14. [Llama.cpp Tutorial: A Complete Guide to Efficient LLM Inference and Implementation](https://www.datacamp.com/tutorial/llama-cpp-tutorial)
+15. [White Nights, by Fyodor Dostoevsky](https://www.gutenberg.org/files/36034/36034-h/36034-h.htm)
 
 #### Epilogue
 > My God, a whole moment of happiness! Is that too little for the whole of a man's life?
