@@ -30,10 +30,13 @@ const rankedDocuments = await context.rankAndSort(query, documents);
 
 const topDocument = rankedDocuments[0];
 const secondDocument = rankedDocuments[1];
+const thirdDocument = rankedDocuments[2];
 
 console.log("query:", query);
 console.log("Top document:", topDocument.document);
 console.log("Second document:", secondDocument.document);
+console.log("Third document:", thirdDocument.document);
+console.log()
 console.log("Ranked documents:", rankedDocuments);
 
 /*
