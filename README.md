@@ -67,66 +67,6 @@ Both tools have their strengths and are suited for different use cases. LangChai
 Each of these APIs has its own strengths and is suited for different use cases. Metal is optimized for Apple devices, CUDA is powerful for NVIDIA GPUs, and Vulkan offers cross-platform capabilities with low overhead.
 
 
-#### VI. Class diagram
-```
-    class Llama {
-        +loadModel(modelPath: string): Model
-        +createContext(): Context
-    }
-
-    class Model {
-        +getSequence(): Sequence
-        +createEmbeddingContext(): EmbeddingContext
-    }
-
-    class Context {
-        +getSequence(): Sequence
-    }
-
-    class Sequence {
-        +contextSequence: string
-    }
-
-    class LlamaChatSession {
-        +prompt(question: string): string
-        +contextSequence: string
-    }
-
-    class defineChatSessionFunction {
-        +description: string
-        +params: object
-        +handler(params: object): any
-    }
-
-    class EmbeddingContext {
-        +getEmbeddingFor(text: string): Embedding
-    }
-
-    class Embedding {
-        +calculateCosineSimilarity(other: Embedding): number
-        +vector: number[]
-    }
-
-    Llama --> Model
-    Model --> Context
-    Context --> Sequence
-    LlamaChatSession --> Sequence
-    defineChatSessionFunction --> LlamaChatSession
-    Model --> EmbeddingContext
-    EmbeddingContext --> Embedding
-```
-
-**Explanation**
-- **`Llama`**: Initializes the Llama instance and loads models.
-- **`Model`**: Represents the loaded model and provides sequences and embedding contexts.
-- **`Context`**: Manages the context for the model.
-- **`Sequence`**: Represents the sequence of the context.
-- **`LlamaChatSession`**: Manages chat sessions using the context sequence.
-- **`defineChatSessionFunction`**: Defines functions that the model can call during a chat session.
-- **`EmbeddingContext`**: Manages the embedding context for generating embeddings.
-- **`Embedding`**: Represents the embedding vector and provides methods for similarity calculations.
-
-
 #### VI. Bibliography
 1. [node-llama-cpp](https://www.npmjs.com/package/node-llama-cpp)
 2. [node-llama-cpp docs](https://github.com/withcatai/node-llama-cpp/tree/master/docs)
