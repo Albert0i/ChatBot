@@ -10,6 +10,7 @@
     "start": "node src/chatbot.js",
     "summarize": "node src/summarize.js",
     "completion": "node src/completion.js",
+    "fillin": "node src/fillin.js",
     "finding": "node src/finding.js",
     "vector": "node src/vector.js",
     "reranking": "node src/reranking.js",
