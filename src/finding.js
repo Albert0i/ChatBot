@@ -92,6 +92,12 @@ const documentEmbeddings = await embedDocuments([
 const query = "What is the tallest mountain on Earth?";
 const queryEmbedding = await context.getEmbeddingFor(query);
 
+console.log()
+console.log("query:", query);
+console.log("queryEmbedding:", Object.keys(queryEmbedding))
+console.log("queryEmbedding.vector:", queryEmbedding.vector);
+console.log("queryEmbedding.vector.length:", queryEmbedding.vector.length);
+
 const similarDocuments = findSimilarDocuments(
     queryEmbedding,
     documentEmbeddings
@@ -99,12 +105,6 @@ const similarDocuments = findSimilarDocuments(
 const top1SimilarDocument = similarDocuments[0];
 const top2SimilarDocument = similarDocuments[1];
 const top3SimilarDocument = similarDocuments[2];
-
-console.log()
-console.log("query:", query);
-console.log("queryEmbedding:", Object.keys(queryEmbedding))
-console.log("queryEmbedding.vector:", queryEmbedding.vector);
-console.log("queryEmbedding.vector.length:", queryEmbedding.vector.length);
 
 console.log()
 console.log("First matched document:", top1SimilarDocument);
