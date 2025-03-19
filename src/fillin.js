@@ -13,6 +13,9 @@ const completion = new LlamaCompletion({
     contextSequence: context.getSequence()
 });
 
+/*
+   You can use infillSupported to check whether a model supports infill completions. Using infill with an unsupported model will throw an UnsupportedError error.
+*/
 if (!completion.infillSupported) {
     console.error("Infill is not supported for this model");
     process.exit(1);

@@ -16,6 +16,9 @@ const completion = new LlamaCompletion({
 const input = "Here is a list of sweet fruits:\n* ";
 console.log("Input: " + input);
 
+/*
+   It's recommended to set maxTokens when generating a text completion to ensure the completion doesn't go on forever
+*/
 const res = await completion.generateCompletion(input, {
     maxTokens: 100
 });
