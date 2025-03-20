@@ -117,7 +117,7 @@ curl -X POST http://localhost:3000/api/load -H "Content-Type: application/json" 
 }
 ```
 
-##### 4. `[jq](https://github.com/stedolan/jq/releases/latest/download/jq-win64.exe)`
+##### 4. [`jq`](https://github.com/stedolan/jq/releases/latest/download/jq-win64.exe)
 A powerful command-line tool for processing JSON data. It's like `sed` for JSON data – you can use it to slice, filter, map, and transform structured data with ease. Here are some key features of `jq`:
 - **JSON Parsing**: Reads JSON data and allows you to manipulate it.
 - **Filtering**: Apply filters to extract specific parts of JSON data.
