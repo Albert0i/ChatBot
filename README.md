@@ -92,6 +92,8 @@ npx --no node-llama-cpp inspect estimate <model-file-url>
 
 ![alt Meta-Llama-3.1-8B-Instruct-Q3_K_M-estimated](img/Meta-Llama-3.1-8B-Instruct-Q3_K_M-estimated.JPG)
 
+![alt Meta-Llama-3.1-8B-Instruct-Q4_K_M-estimated](img/Meta-Llama-3.1-8B-Instruct-Q4_K_M-estimated.JPG)
+
 3. `curl`
 To send a POST request to a backend API is straightforward. Here’s a basic example of how you can do it:
 ```
