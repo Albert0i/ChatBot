@@ -145,7 +145,7 @@ Example usage:
 ```
 pbpaste > output.txt
 ```
-This command would paste the clipboard content into a file named `output.txt`. Alas! You may use [MS-DOS Commands :: paste](https://www.c3scripts.com/tutorials/msdos/paste.html) which needs [.NET Framework 3.5](https://dotnet.microsoft.com/en-us/download/dotnet-framework/net35-sp1?wt.mc_id=install-docs) to work. 
+This command would paste the clipboard content into a file named `output.txt`. Alas! You may use [MS-DOS Commands :: paste](https://www.c3scripts.com/tutorials/msdos/paste.html) which needs [.NET Framework 3.5](https://dotnet.microsoft.com/en-us/download/dotnet-framework/net35-sp1?wt.mc_id=install-docs), to achieve similar effect. 
 
 
 #### VIII. Bibliography
