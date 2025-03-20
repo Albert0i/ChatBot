@@ -97,24 +97,21 @@ npx --no node-llama-cpp inspect estimate <model-file-url>
 ##### 3. `curl`
 To send a POST request to a backend API is straightforward. Here’s a basic example of how you can do it:
 ```
-curl -X POST http://localhost:3000/api/load -H "Content-Type: application/json" -d '{"id":"12234","observed":"I saw bigfoot in Walmark buying size 17 flip flop."}'
+curl -X POST http://localhost:3000/api/v1/load -H "Content-Type: application/json" -d "{ \"id\": \"65535\", \"observed\": \"I saw Bigfoot at Walmart buying flip-flops.\" }" -v
 ```
 
 With form Data
 ```
-curl -X POST http://localhost:3000/api/load -F "firstName=Guy" -F "lastName=Royse"
+curl -X POST http://localhost:3000/form-submit -F "firstName=Guy" -F "lastName=Royse"
 ```
 
 With JSON content from a file by using the `-d` option along with `@` followed by the file path. 
 ```
-curl -X POST http://localhost:3000/api/load -H "Content-Type: application/json" -d @12234.json
+curl -X POST http://localhost:3000/api/v1/load -H "Content-Type: application/json" -d @65535.json
 ```
 
-```12234.json
-{
-    "id":"12234",
-    "observed":"I saw bigfoot in Walmark buying size 17 flip flop."
-}
+```65535.json
+{ "id": "65535", "observed": "I saw Bigfoot at Walmart buying flip-flops. Apparently, he wears a size 17.", "county": "Athens", "state": "Ohio", "classification": "Class A", "timestamp": 205286400 }
 ```
 
 ##### 4. [`jq`](https://github.com/stedolan/jq/releases/latest/download/jq-win64.exe)
