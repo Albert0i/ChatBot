@@ -76,16 +76,14 @@ Each of these APIs has its own strengths and is suited for different use cases. 
 
 
 #### VII. Useful utilities
-1. `inspect`
-
+##### 1. `inspect`
 To check your hardware capabilities:
 ```
 npx --no node-llama-cpp inspect gpu
 ```
 ![alt gpu](img/gpu.JPG)
 
-2. `estimate`
-
+##### 2. `estimate`
 To get a more accurate estimation of how well a model will run on your hardware before downloading it: 
 ```
 npx --no node-llama-cpp inspect estimate <model-file-url>
@@ -96,8 +94,7 @@ npx --no node-llama-cpp inspect estimate <model-file-url>
 
 ![alt Meta-Llama-3.1-8B-Instruct-Q4_K_M-estimated](img/Meta-Llama-3.1-8B-Instruct-Q4_K_M-estimated.JPG)
 
-3. `curl`
-
+##### 3. `curl`
 To send a POST request to a backend API is straightforward. Here’s a basic example of how you can do it:
 ```
 curl -X POST http://localhost:3000/api/load -H "Content-Type: application/json" -d '{"id":"12234","observed":"I saw bigfoot in Walmark buying size 17 flip flop."}'
@@ -120,8 +117,7 @@ curl -X POST http://localhost:3000/api/load -H "Content-Type: application/json" 
 }
 ```
 
-4. `[jq](https://github.com/stedolan/jq/releases/latest/download/jq-win64.exe) `
-
+##### 4. `[jq](https://github.com/stedolan/jq/releases/latest/download/jq-win64.exe) `
 A powerful command-line tool for processing JSON data. It's like `sed` for JSON data – you can use it to slice, filter, map, and transform structured data with ease. Here are some key features of `jq`:
 - **JSON Parsing**: Reads JSON data and allows you to manipulate it.
 - **Filtering**: Apply filters to extract specific parts of JSON data.
@@ -142,8 +138,7 @@ This command would output:
 "John"
 ```
 
-5. `pbpaste`
-
+##### 5. `pbpaste`
 A command-line utility available on macOS that allows you to access the contents of the clipboard. It essentially pastes the clipboard content to the standard output (stdout), similar to using the keyboard shortcut Cmd + V. Here are some common uses:
 - **Pasting Clipboard Content**: You can redirect the clipboard content to a file or another command.
 - **Scripting**: Useful in scripts where you need to manipulate or use clipboard data.
