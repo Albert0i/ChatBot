@@ -111,18 +111,23 @@ curl -X POST http://localhost:3000/api/load -H "Content-Type: application/json" 
 }
 ```
 
-4. `jq` is a powerful command-line tool for processing JSON data. It's like `sed` for JSON data – you can use it to slice, filter, map, and transform structured data with ease. Here are some key features of `jq`[1](https://ostechnix.com/how-to-use-pbcopy-and-pbpaste-commands-on-linux/)[2](https://commandmasters.com/commands/pbpaste-osx/):
+4. [`jq`](https://github.com/stedolan/jq/releases/latest/download/jq-win64.exe) is a powerful command-line tool for processing JSON data. It's like `sed` for JSON data – you can use it to slice, filter, map, and transform structured data with ease. Here are some key features of `jq`[1](https://ostechnix.com/how-to-use-pbcopy-and-pbpaste-commands-on-linux/)[2](https://commandmasters.com/commands/pbpaste-osx/):
 - **JSON Parsing**: Reads JSON data and allows you to manipulate it.
 - **Filtering**: Apply filters to extract specific parts of JSON data.
 - **Transformation**: Modify JSON data, such as changing values or structure.
 - **Pretty-Printing**: Format JSON data to make it more readable.
 
 Example usage:
-```sh
-echo '{"name": "John", "age": 30}' | jq '.name'
+```
+echo {"name": "John", "age": 30} | jq
+echo {"name": "John", "age": 30} | jq .name
 ```
 This command would output:
 ```
+{
+  "name": "John",
+  "age": 30
+}
 "John"
 ```
 
