@@ -67,7 +67,7 @@ Both tools have their strengths and are suited for different use cases. LangChai
 Each of these APIs has its own strengths and is suited for different use cases. Metal is optimized for Apple devices, CUDA is powerful for NVIDIA GPUs, and Vulkan offers cross-platform capabilities with low overhead.
 
 
-#### VI. Used Models 
+#### VI. Models used
 - [bge-reranker-v2-m3-Q8_0.gguf](https://huggingface.co/klnstpr/bge-reranker-v2-m3-Q8_0-GGUF/blob/main/bge-reranker-v2-m3-q8_0.gguf) : reranking.js
 - [bge-small-en-v1.5-f32.gguf](https://huggingface.co/CompendiumLabs/bge-small-en-v1.5-gguf) : finding.js, vector.js
 - [codegemma-2b-Q4_K_M.gguf](https://huggingface.co/itlwas/codegemma-2b-Q4_K_M-GGUF/tree/main) : fillin.js 
@@ -76,6 +76,65 @@ Each of these APIs has its own strengths and is suited for different use cases. 
 
 
 #### VII. Useful utilities
+1. `inspect`
+To check your hardware capabilities:
+```
+npx --no node-llama-cpp inspect gpu
+```
+
+2. `estimate`
+To get a more accurate estimation of how well a model will run on your hardware before downloading it: 
+```
+npx --no node-llama-cpp inspect estimate <model-file-url>
+```
+
+3. `curl`
+To send a POST request to a backend API is straightforward. Here’s a basic example of how you can do it:
+```
+curl -X POST http://localhost:3000/api/load -H "Content-Type: application/json" -d '{"id":"12234","observed":"I saw bigfoot in Walmark buying size 17 flip flop."}'
+```
+
+With form Data
+```
+curl -X POST http://localhost:3000/api/load -F "firstName=Guy" -F "lastName=Royse"
+```
+
+With JSON content from a file by using the `-d` option along with `@` followed by the file path. 
+```
+curl -X POST http://localhost:3000/api/load -H "Content-Type: application/json" -d @12234.json
+```
+
+```12234.json
+{
+    "id":"12234",
+    "observed":"I saw bigfoot in Walmark buying size 17 flip flop."
+}
+```
+
+4. `jq` is a powerful command-line tool for processing JSON data. It's like `sed` for JSON data – you can use it to slice, filter, map, and transform structured data with ease. Here are some key features of `jq`[1](https://ostechnix.com/how-to-use-pbcopy-and-pbpaste-commands-on-linux/)[2](https://commandmasters.com/commands/pbpaste-osx/):
+- **JSON Parsing**: Reads JSON data and allows you to manipulate it.
+- **Filtering**: Apply filters to extract specific parts of JSON data.
+- **Transformation**: Modify JSON data, such as changing values or structure.
+- **Pretty-Printing**: Format JSON data to make it more readable.
+
+Example usage:
+```sh
+echo '{"name": "John", "age": 30}' | jq '.name'
+```
+This command would output:
+```
+"John"
+```
+
+5. `pbpaste` is a command-line utility available on macOS that allows you to access the contents of the clipboard. It essentially pastes the clipboard content to the standard output (stdout), similar to using the keyboard shortcut Cmd + V[4](https://bing.com/search?q=pbpaste+command)[3](https://superuser.com/questions/472598/pbcopy-for-windows). Here are some common uses:
+- **Pasting Clipboard Content**: You can redirect the clipboard content to a file or another command.
+- **Scripting**: Useful in scripts where you need to manipulate or use clipboard data.
+
+Example usage:
+```sh
+pbpaste > output.txt
+```
+This command would paste the clipboard content into a file named `output.txt`.
 
 
 #### VIII. Bibliography
