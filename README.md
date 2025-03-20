@@ -81,12 +81,16 @@ To check your hardware capabilities:
 ```
 npx --no node-llama-cpp inspect gpu
 ```
+![alt gpu](img/gpu.JPG)
 
 2. `estimate`
 To get a more accurate estimation of how well a model will run on your hardware before downloading it: 
 ```
 npx --no node-llama-cpp inspect estimate <model-file-url>
 ```
+![alt mistral-7b-instruct-v0.2.Q4_K_M-estimated](img/mistral-7b-instruct-v0.2.Q4_K_M-estimated.JPG)
+
+![alt Meta-Llama-3.1-8B-Instruct-Q3_K_M-estimated](img/Meta-Llama-3.1-8B-Instruct-Q3_K_M-estimated.JPG)
 
 3. `curl`
 To send a POST request to a backend API is straightforward. Here’s a basic example of how you can do it:
