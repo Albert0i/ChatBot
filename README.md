@@ -111,7 +111,7 @@ curl -X POST http://localhost:3000/api/load -H "Content-Type: application/json" 
 }
 ```
 
-4. [`jq`](https://github.com/stedolan/jq/releases/latest/download/jq-win64.exe) is a powerful command-line tool for processing JSON data. It's like `sed` for JSON data – you can use it to slice, filter, map, and transform structured data with ease. Here are some key features of `jq`[1](https://ostechnix.com/how-to-use-pbcopy-and-pbpaste-commands-on-linux/)[2](https://commandmasters.com/commands/pbpaste-osx/):
+4. [`jq`](https://github.com/stedolan/jq/releases/latest/download/jq-win64.exe) is a powerful command-line tool for processing JSON data. It's like `sed` for JSON data – you can use it to slice, filter, map, and transform structured data with ease. Here are some key features of `jq`:
 - **JSON Parsing**: Reads JSON data and allows you to manipulate it.
 - **Filtering**: Apply filters to extract specific parts of JSON data.
 - **Transformation**: Modify JSON data, such as changing values or structure.
@@ -131,15 +131,15 @@ This command would output:
 "John"
 ```
 
-5. `pbpaste` is a command-line utility available on macOS that allows you to access the contents of the clipboard. It essentially pastes the clipboard content to the standard output (stdout), similar to using the keyboard shortcut Cmd + V[4](https://bing.com/search?q=pbpaste+command)[3](https://superuser.com/questions/472598/pbcopy-for-windows). Here are some common uses:
+5. `pbpaste` is a command-line utility available on macOS that allows you to access the contents of the clipboard. It essentially pastes the clipboard content to the standard output (stdout), similar to using the keyboard shortcut Cmd + V. Here are some common uses:
 - **Pasting Clipboard Content**: You can redirect the clipboard content to a file or another command.
 - **Scripting**: Useful in scripts where you need to manipulate or use clipboard data.
 
 Example usage:
-```sh
+```
 pbpaste > output.txt
 ```
-This command would paste the clipboard content into a file named `output.txt`.
+This command would paste the clipboard content into a file named `output.txt`. Alas! You may use [MS-DOS Commands :: paste](https://www.c3scripts.com/tutorials/msdos/paste.html) which needs [.NET Framework 3.5](https://dotnet.microsoft.com/en-us/download/dotnet-framework/net35-sp1?wt.mc_id=install-docs) to work. 
 
 
 #### VIII. Bibliography
