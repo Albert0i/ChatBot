@@ -26,7 +26,7 @@ sqliteVec.load(db);
 
 const { sqlite_version, vec_version } = db
   .prepare(
-    "select sqlite_version() as sqlite_version, vec_version() as vec_version;",
+    "SELECT sqlite_version() AS sqlite_version, vec_version() AS vec_version;",
   )
   .get();
 console.log()  
