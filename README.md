@@ -99,6 +99,7 @@ To send a POST request to a backend API is straightforward. Here’s a basic exa
 ```
 curl -X POST http://localhost:3000/api/v1/load -H "Content-Type: application/json" -d "{ \"id\": \"65535\", \"observed\": \"I saw Bigfoot at Walmart buying flip-flops.\" }" -v
 ```
+![alt curl](img/curl.JPG)
 
 With JSON content from a file by using the `-d` option along with `@` followed by the file path. 
 ```
@@ -108,11 +109,13 @@ curl -X POST http://localhost:3000/api/v1/load -H "Content-Type: application/jso
 ```65535.json
 { "id": "65535", "observed": "I saw Bigfoot at Walmart buying flip-flops. Apparently, he wears a size 17.", "county": "Athens", "state": "Ohio", "classification": "Class A", "timestamp": 205286400 }
 ```
+![alt curl@](img/curl@.JPG)
 
 With form Data
 ```
 curl -X POST http://localhost:3000/form-submit -H "Content-Type: application/x-www-form-urlencoded" -d "id=12234&observed=I saw bigfoot in Walmark buying size 17 flip flop."
 ```
+![alt curl-form](img/curl-form.JPG)
 
 
 ##### 4. [`jq`](https://github.com/stedolan/jq/releases/latest/download/jq-win64.exe)
