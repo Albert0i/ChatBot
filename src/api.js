@@ -27,7 +27,7 @@ app.post('/form-submit', (req, res) => {
     console.log('formData=', formData)
     res.json({ message: 'Form data received', data: formData });
 });
-// curl -X POST http://localhost:3000/form-submit -H 'Content-Type: application/x-www-form-urlencoded' -d 'id=12234&observed=I saw bigfoot in Walmark buying size 17 flip flop.'
+// curl -X POST http://localhost:3000/form-submit -H "Content-Type: application/x-www-form-urlencoded" -d "id=12234&observed=I saw bigfoot in Walmark buying size 17 flip flop."
  
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);

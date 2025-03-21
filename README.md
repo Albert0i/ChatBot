@@ -100,19 +100,20 @@ To send a POST request to a backend API is straightforward. Here’s a basic exa
 curl -X POST http://localhost:3000/api/v1/load -H "Content-Type: application/json" -d "{ \"id\": \"65535\", \"observed\": \"I saw Bigfoot at Walmart buying flip-flops.\" }" -v
 ```
 
-With form Data
-```
-curl -X POST http://localhost:3000/form-submit -F "firstName=Guy" -F "lastName=Royse"
-```
-
 With JSON content from a file by using the `-d` option along with `@` followed by the file path. 
 ```
-curl -X POST http://localhost:3000/api/v1/load -H "Content-Type: application/json" -d @65535.json
+curl -X POST http://localhost:3000/api/v1/load -H "Content-Type: application/json" -d @data/65535.json
 ```
 
 ```65535.json
 { "id": "65535", "observed": "I saw Bigfoot at Walmart buying flip-flops. Apparently, he wears a size 17.", "county": "Athens", "state": "Ohio", "classification": "Class A", "timestamp": 205286400 }
 ```
+
+With form Data
+```
+curl -X POST http://localhost:3000/form-submit -H "Content-Type: application/x-www-form-urlencoded" -d "id=12234&observed=I saw bigfoot in Walmark buying size 17 flip flop."
+```
+
 
 ##### 4. [`jq`](https://github.com/stedolan/jq/releases/latest/download/jq-win64.exe)
 A powerful command-line tool for processing JSON data. It's like `sed` for JSON data – you can use it to slice, filter, map, and transform structured data with ease. Here are some key features of `jq`:
@@ -145,6 +146,11 @@ Example usage:
 pbpaste > output.txt
 ```
 This command would paste the clipboard content into a file named `output.txt`. Alas! You may use [MS-DOS Commands :: paste](https://www.c3scripts.com/tutorials/msdos/paste.html) which needs [.NET Framework 3.5](https://dotnet.microsoft.com/en-us/download/dotnet-framework/net35-sp1?wt.mc_id=install-docs), to achieve similar effect. 
+
+```
+pbpaste | wc 
+
+```
 
 
 #### VIII. Bibliography
