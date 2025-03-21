@@ -149,7 +149,6 @@ This command would paste the clipboard content into a file named `output.txt`. A
 
 ```
 pbpaste | wc 
-
 ```
 
 
