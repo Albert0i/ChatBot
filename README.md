@@ -69,7 +69,7 @@ Each of these APIs has its own strengths and is suited for different use cases. 
 
 #### VI. Models used
 - [bge-reranker-v2-m3-Q8_0.gguf](https://huggingface.co/klnstpr/bge-reranker-v2-m3-Q8_0-GGUF/blob/main/bge-reranker-v2-m3-q8_0.gguf) : reranking.js
-- [bge-small-en-v1.5-f32.gguf](https://huggingface.co/CompendiumLabs/bge-small-en-v1.5-gguf) : finding.js, vector.js
+- [bge-small-en-v1.5-f32.gguf](https://huggingface.co/CompendiumLabs/bge-small-en-v1.5-gguf) : finding.js, vector.js, sqfinding.js
 - [codegemma-2b-Q4_K_M.gguf](https://huggingface.co/itlwas/codegemma-2b-Q4_K_M-GGUF/tree/main) : fillin.js 
 - [Meta-Llama-3.1-8B-Instruct-Q3_K_M.gguf](https://huggingface.co/bartowski/Meta-Llama-3.1-8B-Instruct-GGUF) : completion.js, function.js, raw.js, schema.js, summarize.js
 - [mistral-7b-instruct-v0.2.Q4_K_M.gguf](https://huggingface.co/TheBloke/Mistral-7B-Instruct-v0.2-GGUF) : chatbot.js 
@@ -155,7 +155,15 @@ pbpaste | wc
 ```
 
 
-#### VIII. Bibliography
+#### VIII. [sqlite-vec](https://github.com/asg017/sqlite-vec)
+> This requires Node v23.5.0 or above.
+
+![alt sqfinding1](img/sqfinding1.JPG)
+
+![alt sqfinding2](img/sqfinding2.JPG)
+
+
+#### IX. Bibliography
 1. [node-llama-cpp](https://www.npmjs.com/package/node-llama-cpp)
 2. [node-llama-cpp docs](https://github.com/withcatai/node-llama-cpp/tree/master/docs)
 3. [node-llama-cpp v3.md](https://github.com/withcatai/node-llama-cpp/blob/master/docs/blog/v3.md)
