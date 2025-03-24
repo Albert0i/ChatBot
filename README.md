@@ -182,6 +182,33 @@ Crowling through the [Blog](https://alexgarcia.xyz/blog/) by Alex Garcia:
 
 
 #### IX. [Node-SQLite](https://nodejs.org/api/sqlite.html)
+In theory, using [llama-cpp](https://github.com/ggml-org/llama.cpp) accompany with any RDBMS capable of storing Array of Float can achieve all similar effects. The problem is you have calculate the distances of vectors one by one and sort them by score. 
+```
+function findSimilarDocuments(embedding, count = 3) {
+    const insertStmt = db.prepare(`INSERT INTO vec_scores(id, embedding_score) 
+                                   VALUES (?, ?)`);                                   
+    // Fetch all embeddings and calculate cosine similarity one by one 
+    const docs = db.prepare(`SELECT id, embedding FROM vec_docs`).all();
+    docs.forEach(doc => {        
+        // And insert into score table accordingly...
+        insertStmt.run(BigInt(doc.id), 
+                       embedding.calculateCosineSimilarity(convertUint8ArrayToFloatArray(doc.embedding)));
+        // insertStmt.run(BigInt(doc.id), 
+        //                calculateDotProduct(embedding.vector, convertUint8ArrayToFloatArray(doc.embedding)));
+        // insertStmt.run(BigInt(doc.id), 
+        //                calculateEuclideanDistance(embedding.vector, convertUint8ArrayToFloatArray(doc.embedding)));
+    })
+
+    // Perform a KNN query like so:
+    const selectStmt = `SELECT f1.id, f1.document, f2.embedding_score
+                        FROM vec_docs f1, vec_scores f2 
+                        WHERE f1.id = f2.id
+                        ORDER BY f2.embedding_score DESC 
+                        LIMIT ${count} OFFSET 0`;
+
+    return db.prepare(selectStmt).all();
+}
+```
 
 ![alt sqfindingCosine1](img/sqfindingCosine1.JPG)
 
