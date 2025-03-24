@@ -182,7 +182,7 @@ Crowling through the [Blog](https://alexgarcia.xyz/blog/) by Alex Garcia:
 
 
 #### IX. [Node-SQLite](https://nodejs.org/api/sqlite.html)
-In theory, using [llama-cpp](https://github.com/ggml-org/llama.cpp) accompany with any RDBMS capable of storing Array of Float can achieve all similar effects. The problem is you have calculate the distances of vectors one by one and sort them by score. 
+In theory, using [llama-cpp](https://github.com/ggml-org/llama.cpp) along with any RDBMS capable of storing Array of Float can achieve the same effect of vector search. The problem is you have calculate the distances of vectors one by one and sort them by score to get the KNN result. 
 ```
 function findSimilarDocuments(embedding, count = 3) {
     const insertStmt = db.prepare(`INSERT INTO vec_scores(id, embedding_score) 
