@@ -69,7 +69,7 @@ Each of these APIs has its own strengths and is suited for different use cases. 
 
 #### VI. Models used
 - [bge-reranker-v2-m3-Q8_0.gguf](https://huggingface.co/klnstpr/bge-reranker-v2-m3-Q8_0-GGUF/blob/main/bge-reranker-v2-m3-q8_0.gguf) : reranking.js
-- [bge-small-en-v1.5-f32.gguf](https://huggingface.co/CompendiumLabs/bge-small-en-v1.5-gguf) : finding.js, vector.js, sqfinding.js
+- [bge-small-en-v1.5-f32.gguf](https://huggingface.co/CompendiumLabs/bge-small-en-v1.5-gguf) : finding.js, vector.js, sqfinding.js, sqfindingCosine.js
 - [codegemma-2b-Q4_K_M.gguf](https://huggingface.co/itlwas/codegemma-2b-Q4_K_M-GGUF/tree/main) : fillin.js 
 - [Meta-Llama-3.1-8B-Instruct-Q3_K_M.gguf](https://huggingface.co/bartowski/Meta-Llama-3.1-8B-Instruct-GGUF) : completion.js, function.js, raw.js, schema.js, summarize.js
 - [mistral-7b-instruct-v0.2.Q4_K_M.gguf](https://huggingface.co/TheBloke/Mistral-7B-Instruct-v0.2-GGUF) : chatbot.js 
@@ -158,12 +158,33 @@ pbpaste | wc
 #### VIII. [sqlite-vec](https://github.com/asg017/sqlite-vec)
 > This requires Node v23.5.0 or above.
 
+Crowling through the [Blog](https://alexgarcia.xyz/blog/) by Alex Garcia: 
+
+2024-05-02: [I'm writing a new vector search SQLite Extension](https://alexgarcia.xyz/blog/2024/building-new-vector-search-sqlite/index.html)
+2024-05-23: [Vector search in 7 different programming languages using SQL](https://alexgarcia.xyz/blog/2024/sql-vector-search-languages/index.html)
+2024-07-24: [Introducing sqlite-lembed: A SQLite extension for generating text embeddings locally](https://alexgarcia.xyz/blog/2024/sqlite-lembed-init/index.html)
+2024-07-25: [Introducing sqlite-rembed: A SQLite extension for generating text embeddings from remote APIs](https://alexgarcia.xyz/blog/2024/sqlite-rembed-init/index.html)
+2024-08-01: [Introducing sqlite-vec v0.1.0: a vector search SQLite extension that runs everywhere](https://alexgarcia.xyz/blog/2024/sqlite-vec-stable-release/index.html)
+2024-10-02: [Hybrid full-text search and vector search with SQLite](https://alexgarcia.xyz/blog/2024/sqlite-vec-hybrid-search/index.html)
+2024-11-20: [sqlite-vec now supports metadata columns and filtering](https://alexgarcia.xyz/blog/2024/sqlite-vec-metadata-release/index.html)
+
+> [`sqlite-vec`](https://github.com/asg017/sqlite-vec), a SQLite extension for vector search, now supports [metadata columns](https://alexgarcia.xyz/sqlite-vec/features/vec0.html#metadata), [auxiliary columns](https://alexgarcia.xyz/sqlite-vec/features/vec0.html#aux), and [partitioning](https://alexgarcia.xyz/sqlite-vec/features/vec0.html#partition-keys) in vec0 virtual tables! You can use these to store metadata like `user_id` or `created_at` fields, add additional `WHERE` clauses in KNN queries, and make certain selective queries much faster. 
+
+> The `vec0` virtual table is brute-force only, which really slows down KNN queries on larger datasets. There are strategies like [binary quantization](https://alexgarcia.xyz/sqlite-vec/guides/binary-quant.html) or [Matryoshka embeddings](https://alexgarcia.xyz/sqlite-vec/guides/matryoshka.html) that can help, but `sqlite-vec` won't be fast until ANN indexes are supported.
+
+> ...using [hamming distance](https://en.wikipedia.org/wiki/Hamming_distance), because it's a binary vector...
+
+> In [information theory](https://en.wikipedia.org/wiki/Information_theory), the **Hamming distance** between two strings or vectors of equal length is the number of positions at which the corresponding [symbols](https://en.wikipedia.org/wiki/Symbol) are different. In other words, it measures the minimum number of *substitutions* required to change one string into the other, or equivalently, the minimum number of *errors* that could have transformed one string into the other. In a more general context, the Hamming distance is one of several [string metrics](https://en.wikipedia.org/wiki/String_metric) for measuring the [edit distance](https://en.wikipedia.org/wiki/Edit_distance) between two sequences. It is named after the American mathematician [Richard Hamming](https://en.wikipedia.org/wiki/Richard_Hamming).
+
 ![alt sqfinding1](img/sqfinding1.JPG)
 
 ![alt sqfinding2](img/sqfinding2.JPG)
 
 
-#### IX. Bibliography
+#### IX. SQlite
+
+
+#### X. Bibliography
 1. [node-llama-cpp](https://www.npmjs.com/package/node-llama-cpp)
 2. [node-llama-cpp docs](https://github.com/withcatai/node-llama-cpp/tree/master/docs)
 3. [node-llama-cpp v3.md](https://github.com/withcatai/node-llama-cpp/blob/master/docs/blog/v3.md)

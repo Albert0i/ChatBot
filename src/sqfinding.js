@@ -6,7 +6,7 @@
 import { DatabaseSync } from "node:sqlite";
 import * as sqliteVec from "sqlite-vec";
 import { documents } from '../data/documents100.js'
-
+import { convertFloat32ArrayToUint8Array } from './util.js'
 import {fileURLToPath} from "url";
 import path from "path";
 import {getLlama} from "node-llama-cpp";
@@ -34,7 +34,11 @@ console.log()
 console.log(`sqlite_version=${sqlite_version}, vec_version=${vec_version}`);
 db.exec(`CREATE VIRTUAL TABLE vec_items USING vec0 (
             id integer primary key, 
+
+            -- Auxiliary columns, unindexed but fast lookups
             document text, 
+
+            -- Vector text embedding of the 'document' column, with 384 dimensions
             embedding float[384]
         )`);
 
@@ -45,20 +49,20 @@ async function embedDocuments(documents) {
     documents.forEach(async (document, index) => {        
         const { vector } = await context.getEmbeddingFor(document);        
         // node:sqlite requires Uint8Array for BLOB values, so a bit awkward
-        insertStmt.run(BigInt(index), document, new Uint8Array(new Float32Array(vector).buffer));
+        insertStmt.run(BigInt(index + 1), document, convertFloat32ArrayToUint8Array(vector));
         console.debug(
             `${index + 1} / ${documents.length} documents embedded`
         );
     })
 }
 
-function findSimilarDocuments(embedding) {
+function findSimilarDocuments(embedding, count = 3) {
+    // Perform a KNN query like so:
     const rows = db
           .prepare(`SELECT id, document, distance
                     FROM vec_items
-                    WHERE embedding MATCH ?
-                    ORDER BY distance
-                    LIMIT 3`)
+                    WHERE embedding MATCH ? AND k=${count}
+                    ORDER BY distance`)
           .all(new Uint8Array(new Float32Array(embedding.vector).buffer));
     
     return rows; 
@@ -74,7 +78,7 @@ const queryEmbedding = await context.getEmbeddingFor(query);
 
 const similarDocuments = findSimilarDocuments(queryEmbedding);
 
-console.log()
+console.log(similarDocuments.length)
 console.log("First matched document:", similarDocuments[0].document, similarDocuments[0].distance );
 console.log("Second matched document:", similarDocuments[1].document, similarDocuments[1].distance );
 console.log("Third matched document:", similarDocuments[2].document, similarDocuments[2].distance );

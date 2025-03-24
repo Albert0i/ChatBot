@@ -5,7 +5,7 @@
  */
 import { DatabaseSync } from "node:sqlite";
 import { documents } from '../data/documents100.js'
-
+import { convertFloat32ArrayToUint8Array, convertUint8ArrayToFloatArray} from './util.js'
 import {fileURLToPath} from "url";
 import path from "path";
 import {getLlama} from "node-llama-cpp";
@@ -33,6 +33,8 @@ console.log(`sqlite_version=${sqlite_version}`);
 db.exec(`CREATE TABLE vec_docs (
                 id INTEGER PRIMARY KEY, 
                 document TEXT, 
+
+                -- Vector text embedding of the 'document' column, with 384 dimensions
                 embedding FLOAT[384]
          )`);
 db.exec(`CREATE TABLE vec_scores (
@@ -56,31 +58,30 @@ async function embedDocuments(documents) {
     })
 }
 
-// node:sqlite requires Uint8Array for BLOB values, so a bit awkward
-// Function to convert Float32Array to Uint8Array
-function convertFloat32ArrayToUint8Array(floatArray) {
-    return new Uint8Array(new Float32Array(floatArray).buffer);
-}
-
-// Function to convert Uint8Array back to array of floats
-function convertUint8ArrayToFloatArray(uint8Array) {
-    const float32Array = new Float32Array(uint8Array.buffer);
-    return Array.from(float32Array);
-}
-
-function findSimilarDocuments(embedding, count) {
+function findSimilarDocuments(embedding, count = 3) {
     const insertStmt = db.prepare(`INSERT INTO vec_scores(id, embedding_score) 
-                                   VALUES (?, ?)`);
+                                   VALUES (?, ?)`);                                   
+    // Fetch all embeddings and calculate cosine similarity one by one 
+    const docs = db.prepare(`SELECT id, embedding FROM vec_docs`).all();
+    docs.forEach(doc => {        
+        // And insert into score table accordingly...
+        insertStmt.run(BigInt(doc.id), 
+                       embedding.calculateCosineSimilarity(convertUint8ArrayToFloatArray(doc.embedding)));
+
+        // insertStmt.run(BigInt(doc.id), 
+        //                calculateCosineSimilarity(embedding.vector, convertUint8ArrayToFloatArray(doc.embedding)));
+        // insertStmt.run(BigInt(doc.id), 
+        //                calculateDotProduct(embedding.vector, convertUint8ArrayToFloatArray(doc.embedding)));
+        // insertStmt.run(BigInt(doc.id), 
+        //                calculateEuclideanDistance(embedding.vector, convertUint8ArrayToFloatArray(doc.embedding)));
+    })
+
+    // Perform a KNN query like so:
     const selectStmt = `SELECT f1.id, f1.document, f2.embedding_score
                         FROM vec_docs f1, vec_scores f2 
                         WHERE f1.id = f2.id
                         ORDER BY f2.embedding_score DESC 
                         LIMIT ${count} OFFSET 0`;
-    const docs = db.prepare(`SELECT id, embedding FROM vec_docs`).all();
-    docs.forEach(doc => {        
-        insertStmt.run(BigInt(doc.id), 
-                       embedding.calculateCosineSimilarity(convertUint8ArrayToFloatArray(doc.embedding)));
-    })
 
     return db.prepare(selectStmt).all();
 }
@@ -93,7 +94,7 @@ await embedDocuments(documents);
 const query = "What is the tallest mountain on Earth?";
 const queryEmbedding = await context.getEmbeddingFor(query);
 
-const similarDocuments = findSimilarDocuments(queryEmbedding, 3);
+const similarDocuments = findSimilarDocuments(queryEmbedding);
 
 console.log()
 console.log("First matched document:", similarDocuments[0].document, similarDocuments[0].embedding_score );
