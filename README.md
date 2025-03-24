@@ -184,6 +184,11 @@ Crowling through the [Blog](https://alexgarcia.xyz/blog/) by Alex Garcia:
 #### IX. SQlite
 
 
+![alt sqfindingCosine1](img/sqfindingCosine1.JPG)
+
+![alt sqfindingCosine2](img/sqfindingCosine2.JPG)
+
+
 #### X. Bibliography
 1. [node-llama-cpp](https://www.npmjs.com/package/node-llama-cpp)
 2. [node-llama-cpp docs](https://github.com/withcatai/node-llama-cpp/tree/master/docs)
