@@ -160,13 +160,13 @@ pbpaste | wc
 
 Crowling through the [Blog](https://alexgarcia.xyz/blog/) by Alex Garcia: 
 
-2024-05-02: [I'm writing a new vector search SQLite Extension](https://alexgarcia.xyz/blog/2024/building-new-vector-search-sqlite/index.html)
-2024-05-23: [Vector search in 7 different programming languages using SQL](https://alexgarcia.xyz/blog/2024/sql-vector-search-languages/index.html)
-2024-07-24: [Introducing sqlite-lembed: A SQLite extension for generating text embeddings locally](https://alexgarcia.xyz/blog/2024/sqlite-lembed-init/index.html)
-2024-07-25: [Introducing sqlite-rembed: A SQLite extension for generating text embeddings from remote APIs](https://alexgarcia.xyz/blog/2024/sqlite-rembed-init/index.html)
-2024-08-01: [Introducing sqlite-vec v0.1.0: a vector search SQLite extension that runs everywhere](https://alexgarcia.xyz/blog/2024/sqlite-vec-stable-release/index.html)
-2024-10-02: [Hybrid full-text search and vector search with SQLite](https://alexgarcia.xyz/blog/2024/sqlite-vec-hybrid-search/index.html)
-2024-11-20: [sqlite-vec now supports metadata columns and filtering](https://alexgarcia.xyz/blog/2024/sqlite-vec-metadata-release/index.html)
+- 2024-05-02: [I'm writing a new vector search SQLite Extension](https://alexgarcia.xyz/blog/2024/building-new-vector-search-sqlite/index.html)
+- 2024-05-23: [Vector search in 7 different programming languages using SQL](https://alexgarcia.xyz/blog/2024/sql-vector-search-languages/index.html)
+- 2024-07-24: [Introducing sqlite-lembed: A SQLite extension for generating text embeddings locally](https://alexgarcia.xyz/blog/2024/sqlite-lembed-init/index.html)
+- 2024-07-25: [Introducing sqlite-rembed: A SQLite extension for generating text embeddings from remote APIs](https://alexgarcia.xyz/blog/2024/sqlite-rembed-init/index.html)
+- 2024-08-01: [Introducing sqlite-vec v0.1.0: a vector search SQLite extension that runs everywhere](https://alexgarcia.xyz/blog/2024/sqlite-vec-stable-release/index.html)
+- 2024-10-02: [Hybrid full-text search and vector search with SQLite](https://alexgarcia.xyz/blog/2024/sqlite-vec-hybrid-search/index.html)
+- 2024-11-20: [sqlite-vec now supports metadata columns and filtering](https://alexgarcia.xyz/blog/2024/sqlite-vec-metadata-release/index.html)
 
 > [`sqlite-vec`](https://github.com/asg017/sqlite-vec), a SQLite extension for vector search, now supports [metadata columns](https://alexgarcia.xyz/sqlite-vec/features/vec0.html#metadata), [auxiliary columns](https://alexgarcia.xyz/sqlite-vec/features/vec0.html#aux), and [partitioning](https://alexgarcia.xyz/sqlite-vec/features/vec0.html#partition-keys) in vec0 virtual tables! You can use these to store metadata like `user_id` or `created_at` fields, add additional `WHERE` clauses in KNN queries, and make certain selective queries much faster. 
 
