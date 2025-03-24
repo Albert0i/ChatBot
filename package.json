@@ -19,6 +19,7 @@
     "raw": "node src/raw.js",
     "api": "nodemon src/api.js",
     "sqfinding": "node src/sqfinding.js",
+    "sqfindingCosine": "node src/sqfindingCosine.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
