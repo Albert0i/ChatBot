@@ -216,14 +216,14 @@ export function calculateDotProduct(vector1, vector2) {
     }
     return vector1.reduce((sum, val, i) => sum + val * vector2[i], 0);
 }
-
+```
+```
 export function calculateEuclideanDistance(vector1, vector2) {
     if (!Array.isArray(vector1) || !Array.isArray(vector2)) {
         throw new TypeError("Both arguments must be arrays.");
     }
     return Math.sqrt(vector1.reduce((sum, val, i) => sum + Math.pow(val - vector2[i], 2), 0));
 }
-
 ```
 
 ![alt sqfindingCosine1](img/sqfindingCosine1.JPG)
