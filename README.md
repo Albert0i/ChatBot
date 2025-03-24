@@ -181,8 +181,7 @@ Crowling through the [Blog](https://alexgarcia.xyz/blog/) by Alex Garcia:
 ![alt sqfinding2](img/sqfinding2.JPG)
 
 
-#### IX. SQlite
-
+#### IX. [SQLite](https://nodejs.org/api/sqlite.html)
 
 ![alt sqfindingCosine1](img/sqfindingCosine1.JPG)
 
