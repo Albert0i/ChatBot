@@ -1,6 +1,7 @@
 import {fileURLToPath} from "url";
 import path from "path";
 import {getLlama} from "node-llama-cpp";
+import { documents } from '../data/documents100.js'
 
 const __dirname = path.dirname(
     fileURLToPath(import.meta.url)
@@ -62,7 +63,7 @@ function findSimilarDocuments(embedding, documentEmbeddings) {
     console.log('Documents and metrics')
     for (let [key, value] of similarities.entries()) {
         console.log(`${key}: ${value}`);
-    }    
+    }
 
     return Array.from(similarities.keys())
         .sort((a, b) => similarities.get(b) - similarities.get(a));
@@ -75,28 +76,17 @@ function findSimilarDocuments(embedding, documentEmbeddings) {
     */
 }
 
-const documentEmbeddings = await embedDocuments([
-    "The sky is clear and blue today",
-    "I love eating pizza with extra cheese",
-    "Dogs love to play fetch with their owners",
-    "The capital of France is Paris",
-    "Drinking water is important for staying hydrated",
-    "Mount Everest is the tallest mountain in the world",
-    "A warm cup of tea is perfect for a cold winter day",
-    "Painting is a form of creative expression",
-    "Not all the things that shine are made of gold",
-    "Cleaning the house is a good way to keep it tidy"
-]);
+const documentEmbeddings = await embedDocuments(documents);
 
 
 const query = "What is the tallest mountain on Earth?";
 const queryEmbedding = await context.getEmbeddingFor(query);
 
 console.log()
-console.log("query:", query);
-console.log("queryEmbedding:", Object.keys(queryEmbedding))
-console.log("queryEmbedding.vector:", queryEmbedding.vector);
-console.log("queryEmbedding.vector.length:", queryEmbedding.vector.length);
+// console.log("query:", query);
+// console.log("queryEmbedding:", Object.keys(queryEmbedding))
+// console.log("queryEmbedding.vector:", queryEmbedding.vector);
+// console.log("queryEmbedding.vector.length:", queryEmbedding.vector.length);
 
 const similarDocuments = findSimilarDocuments(
     queryEmbedding,

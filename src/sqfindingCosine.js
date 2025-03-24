@@ -4,7 +4,7 @@
  * Note that this requires Node v23.5.0 or above.
  */
 import { DatabaseSync } from "node:sqlite";
-import { documents } from '../data/documents10.js'
+import { documents } from '../data/documents100.js'
 
 import {fileURLToPath} from "url";
 import path from "path";
