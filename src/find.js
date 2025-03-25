@@ -76,6 +76,7 @@ function findSimilarDocuments(embedding, count = 10) {
 
 console.log('Please wait while loading...')
 await embedDocuments(documents);
+findSimilarDocuments(await context.getEmbeddingFor('sample'));
 
 /*
    main
