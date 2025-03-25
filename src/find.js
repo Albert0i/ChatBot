@@ -23,7 +23,7 @@ const __dirname = path.dirname(
 
 const llama = await getLlama();
 const model = await llama.loadModel({
-    modelPath: path.join(__dirname, "models", "bge-small-en-v1.5-f32.gguf")
+    modelPath: path.join(__dirname, "models", "paraphrase-MiniLM-L6-v2.i1-IQ1_S.gguf")
 });
 const context = await model.createEmbeddingContext();
 
