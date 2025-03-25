@@ -169,6 +169,48 @@ Alex Garcia's [Blog](https://alexgarcia.xyz/blog/)
 
 > [`sqlite-vec`](https://github.com/asg017/sqlite-vec), a SQLite extension for vector search, now supports [metadata columns](https://alexgarcia.xyz/sqlite-vec/features/vec0.html#metadata), [auxiliary columns](https://alexgarcia.xyz/sqlite-vec/features/vec0.html#aux), and [partitioning](https://alexgarcia.xyz/sqlite-vec/features/vec0.html#partition-keys) in vec0 virtual tables! You can use these to store metadata like `user_id` or `created_at` fields, add additional `WHERE` clauses in KNN queries, and make certain selective queries much faster. 
 
+For example:
+```
+create virtual table vec_articles using vec0(
+
+  article_id integer primary key,
+
+  -- Vector text embedding of the `headline` column, with 384 dimensions
+  headline_embedding float[384],
+
+  -- Partition key, internally shard vector index on article published year
+  year integer partition key,
+
+  -- Metadata columns, can appear in `WHERE` clause of KNN queries
+  news_desk text,
+  word_count integer,
+  pub_date text,
+
+  -- Auxiliary columns, unindexed but fast lookups
+  +headline text,
+  +url text
+);
+```
+
+We can perform a KNN query like so:
+```
+select
+  article_id,
+  headline,
+  news_desk,
+  word_count,
+  url,
+  pub_date,
+  distance
+from vec_articles
+where headline_embedding match lembed('pandemic')
+  and k = 8
+  and year = 2020
+  and news_desk in ('Sports', 'Business')
+  and word_count between 500 and 1000;
+```
+We can reference those metadata columns and parition key columns in the WHERE clause of the KNN query, and get the exact results we want!
+
 > Metadata columns are declared with normal column declartions in the `vec0` constructor. Metadata columns are stored and indexed *alongside* vectors, and can appear in the `WHERE` clause of KNN queries. Metadata columns can be boolean, integer, floats, or text values. 
 
 > Some columns never need to be indexed! You can always store addtionally `SELECT`-only metadata in separate tables and do a `JOIN` yourself, or you can use auxiliary columns. 
