@@ -158,8 +158,7 @@ pbpaste | wc
 #### VIII. [sqlite-vec](https://github.com/asg017/sqlite-vec)
 > This requires Node v23.5.0 or above.
 
-Crowling through the [Blog](https://alexgarcia.xyz/blog/) by Alex Garcia: 
-
+Alex Garcia's [Blog](https://alexgarcia.xyz/blog/)
 - 2024-05-02: [I'm writing a new vector search SQLite Extension](https://alexgarcia.xyz/blog/2024/building-new-vector-search-sqlite/index.html)
 - 2024-05-23: [Vector search in 7 different programming languages using SQL](https://alexgarcia.xyz/blog/2024/sql-vector-search-languages/index.html)
 - 2024-07-24: [Introducing sqlite-lembed: A SQLite extension for generating text embeddings locally](https://alexgarcia.xyz/blog/2024/sqlite-lembed-init/index.html)
@@ -170,11 +169,41 @@ Crowling through the [Blog](https://alexgarcia.xyz/blog/) by Alex Garcia:
 
 > [`sqlite-vec`](https://github.com/asg017/sqlite-vec), a SQLite extension for vector search, now supports [metadata columns](https://alexgarcia.xyz/sqlite-vec/features/vec0.html#metadata), [auxiliary columns](https://alexgarcia.xyz/sqlite-vec/features/vec0.html#aux), and [partitioning](https://alexgarcia.xyz/sqlite-vec/features/vec0.html#partition-keys) in vec0 virtual tables! You can use these to store metadata like `user_id` or `created_at` fields, add additional `WHERE` clauses in KNN queries, and make certain selective queries much faster. 
 
+> `sqlite-vec` works in a similar way to [SQLite's full-text search](https://www.sqlite.org/fts5.html) support — you declare a "virtual table" with vector columns, insert data with normal `INSERT INTO` statements, and query with normal `SELECT` statements.
+
+> `vec0` virtual tables store your vectors inside the same SQLite database with shadow tables, just like `fts5` virtual tables. They are designed to be efficient during `INSERT`'s, `UPDATE`'s, and `DELETE`'s. A `MATCH` constraint on a vector column signals a KNN style search, which is also optimized for speed.
+
 > The `vec0` virtual table is brute-force only, which really slows down KNN queries on larger datasets. There are strategies like [binary quantization](https://alexgarcia.xyz/sqlite-vec/guides/binary-quant.html) or [Matryoshka embeddings](https://alexgarcia.xyz/sqlite-vec/guides/matryoshka.html) that can help, but `sqlite-vec` won't be fast until ANN indexes are supported.
 
 > ...using [hamming distance](https://en.wikipedia.org/wiki/Hamming_distance), because it's a binary vector...
 
+> Though initially, `sqlite-vec` will only support exhaustive full-scan vector search. There will be no "approximate nearest neighbors" (ANN) options. But I hope to add IVF + HNSW in the future!
+
+--- 
+1. 
 > In [information theory](https://en.wikipedia.org/wiki/Information_theory), the **Hamming distance** between two strings or vectors of equal length is the number of positions at which the corresponding [symbols](https://en.wikipedia.org/wiki/Symbol) are different. In other words, it measures the minimum number of *substitutions* required to change one string into the other, or equivalently, the minimum number of *errors* that could have transformed one string into the other. In a more general context, the Hamming distance is one of several [string metrics](https://en.wikipedia.org/wiki/String_metric) for measuring the [edit distance](https://en.wikipedia.org/wiki/Edit_distance) between two sequences. It is named after the American mathematician [Richard Hamming](https://en.wikipedia.org/wiki/Richard_Hamming).
+
+2. 
+In SQLite, a **virtual table** is an interface to an external storage or computation engine that appears to be a table but does not actually store information in the database file. Instead, it allows SQLite to interact with data that is not stored in the traditional SQLite format.
+
+**Key Characteristics**
+- *External Data Access*: Virtual tables can access data stored outside the SQLite database, such as files, memory structures, or even remote databases.
+- *Custom Implementation*: Developers can create custom virtual tables to handle specific types of data or computations.
+- *SQL Interface*: Virtual tables can be queried and manipulated using standard SQL commands, just like regular tables.
+
+**Usage**
+1. *Full-Text Search*: Virtual tables can be used to implement full-text search capabilities, such as the FTS3 and FTS5 modules.
+2. *Spatial Data*: They can handle spatial data using R-Trees, which are useful for geographic information systems (GIS).
+3. *Custom Data Sources*: Virtual tables can represent data from CSV files, JSON strings, or even system information like process tables and network connections.
+4. *Performance Optimization*: They can be used to optimize performance by providing efficient access to frequently queried data.
+
+You can check which extensions are loaded by using the following command:
+```
+PRAGMA compile_options;
+```
+![alt PRAGMA](img/PRAGMA.JPG)
+
+---
 
 ![alt sqfinding1](img/sqfinding1.JPG)
 
@@ -182,7 +211,23 @@ Crowling through the [Blog](https://alexgarcia.xyz/blog/) by Alex Garcia:
 
 
 #### IX. [Node-SQLite](https://nodejs.org/api/sqlite.html)
-In theory, using [llama-cpp](https://github.com/ggml-org/llama.cpp) along with any RDBMS capable of storing Array of Float can achieve the same effect of vector search. The problem is you have calculate the distances of vectors one by one and sort them by score to get the KNN result. 
+In theory, using [llama-cpp](https://github.com/ggml-org/llama.cpp) along with any RDBMS capable of storing Array of Float can achieve the same effect of vector search. 
+```
+CREATE TABLE vec_docs (
+    id INTEGER PRIMARY KEY, 
+    document TEXT, 
+
+    -- Vector text embedding of the 'document' column, with 384 dimensions
+    embedding FLOAT[384]
+);
+CREATE TABLE vec_scores (
+    id INTEGER PRIMARY KEY,
+    embedding_score FLOAT
+); 
+CREATE INDEX idx_vec_scores ON vec_scores (embedding_score);
+```
+
+The *only* problem is that you have calculate the distances of vectors one by one and sort them by score to get the KNN result. 
 ```
 function findSimilarDocuments(embedding, count = 3) {
     const insertStmt = db.prepare(`INSERT INTO vec_scores(id, embedding_score) 
@@ -192,11 +237,7 @@ function findSimilarDocuments(embedding, count = 3) {
     docs.forEach(doc => {        
         // And insert into score table accordingly...
         insertStmt.run(BigInt(doc.id), 
-                       embedding.calculateCosineSimilarity(convertUint8ArrayToFloatArray(doc.embedding)));
-        // insertStmt.run(BigInt(doc.id), 
-        //                calculateDotProduct(embedding.vector, convertUint8ArrayToFloatArray(doc.embedding)));
-        // insertStmt.run(BigInt(doc.id), 
-        //                calculateEuclideanDistance(embedding.vector, convertUint8ArrayToFloatArray(doc.embedding)));
+                       calculateDotProduct(embedding.vector, convertUint8ArrayToFloatArray(doc.embedding)));
     })
 
     // Perform a KNN query like so:
