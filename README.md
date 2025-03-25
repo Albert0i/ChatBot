@@ -169,11 +169,19 @@ Alex Garcia's [Blog](https://alexgarcia.xyz/blog/)
 
 > [`sqlite-vec`](https://github.com/asg017/sqlite-vec), a SQLite extension for vector search, now supports [metadata columns](https://alexgarcia.xyz/sqlite-vec/features/vec0.html#metadata), [auxiliary columns](https://alexgarcia.xyz/sqlite-vec/features/vec0.html#aux), and [partitioning](https://alexgarcia.xyz/sqlite-vec/features/vec0.html#partition-keys) in vec0 virtual tables! You can use these to store metadata like `user_id` or `created_at` fields, add additional `WHERE` clauses in KNN queries, and make certain selective queries much faster. 
 
+> Metadata columns are declared with normal column declartions in the `vec0` constructor. Metadata columns are stored and indexed *alongside* vectors, and can appear in the `WHERE` clause of KNN queries. Metadata columns can be boolean, integer, floats, or text values. 
+
+> Some columns never need to be indexed! You can always store addtionally `SELECT`-only metadata in separate tables and do a `JOIN` yourself, or you can use auxiliary columns. 
+
+> Auxiliary columns are denoted by a `+` prefix in the column definition, modeled after [the same feature in the SQLite R*Tree extension](https://www.sqlite.org/rtree.html#auxiliary_columns). These columns are unindex, stored in a separate internal table and `JOIN`'ed at `SELECT` time. They *cannot* appear in a KNN `WHERE` query, as performance would worsen dramatically.
+
+
 > `sqlite-vec` works in a similar way to [SQLite's full-text search](https://www.sqlite.org/fts5.html) support — you declare a "virtual table" with vector columns, insert data with normal `INSERT INTO` statements, and query with normal `SELECT` statements.
 
 > `vec0` virtual tables store your vectors inside the same SQLite database with shadow tables, just like `fts5` virtual tables. They are designed to be efficient during `INSERT`'s, `UPDATE`'s, and `DELETE`'s. A `MATCH` constraint on a vector column signals a KNN style search, which is also optimized for speed.
 
 > The `vec0` virtual table is brute-force only, which really slows down KNN queries on larger datasets. There are strategies like [binary quantization](https://alexgarcia.xyz/sqlite-vec/guides/binary-quant.html) or [Matryoshka embeddings](https://alexgarcia.xyz/sqlite-vec/guides/matryoshka.html) that can help, but `sqlite-vec` won't be fast until ANN indexes are supported.
+
 
 > ...using [hamming distance](https://en.wikipedia.org/wiki/Hamming_distance), because it's a binary vector...
 
