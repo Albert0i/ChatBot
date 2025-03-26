@@ -5,7 +5,7 @@
  */
 import { DatabaseSync } from "node:sqlite";
 import { documents } from '../data/documents100.js'
-import { convertFloat32ArrayToUint8Array, convertUint8ArrayToFloatArray} from './util.js'
+import { convertFloat32ArrayToUint8Array, convertUint8ArrayToFloatArray} from './util/helper.js'
 import {fileURLToPath} from "url";
 import path from "path";
 import {getLlama} from "node-llama-cpp";

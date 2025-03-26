@@ -4,9 +4,8 @@
  * Note that this requires Node v23.5.0 or above.
  */
 import { DatabaseSync } from "node:sqlite";
-import * as sqliteVec from "sqlite-vec";
-import { documents } from '../src/models/documents.js'
-import { convertFloat32ArrayToUint8Array } from './util.js'
+import { writers } from '../data/writers100.js'
+import { convertUint8ArrayToFloatArray } from './util/helper.js'
 import {fileURLToPath} from "url";
 import path from "path";
 import {getLlama} from "node-llama-cpp";
@@ -27,26 +26,29 @@ const model = await llama.loadModel({
 });
 const context = await model.createEmbeddingContext();
 
-// allExtension is required to enable extension support
-const db = new DatabaseSync(":memory:", { allowExtension: true });
-sqliteVec.load(db);
+const db = new DatabaseSync(":memory:");
 
-const { sqlite_version, vec_version } = db
+const { sqlite_version } = db
   .prepare(
-    "SELECT sqlite_version() AS sqlite_version, vec_version() AS vec_version;",
+    "SELECT sqlite_version() AS sqlite_version;",
   )
   .get();
 console.log()  
-console.log(`sqlite_version=${sqlite_version}, vec_version=${vec_version}`);
-db.exec(`CREATE VIRTUAL TABLE vec_items USING vec0 (
-            id integer primary key, 
+console.log(`sqlite_version=${sqlite_version}`);
 
-            -- Auxiliary columns, unindexed but fast lookups
-            document text, 
+db.exec(`CREATE TABLE vec_items (
+                id INTEGER PRIMARY KEY, 
+                document TEXT, 
 
-            -- Vector text embedding of the 'document' column, with 384 dimensions
-            embedding float[384]
-        )`);
+                -- Vector text embedding of the 'document' column, with 384 dimensions
+                embedding FLOAT[384]
+         )`);
+db.exec(`CREATE TABLE vec_scores (
+            id INTEGER PRIMARY KEY,
+            embedding_score FLOAT
+         ); 
+         CREATE INDEX idx_vec_scores ON vec_scores (embedding_score);
+       `); 
 
 async function embedDocuments(documents) {
     const insertStmt = db.prepare(`INSERT INTO vec_items(id, document, embedding) 
@@ -56,26 +58,34 @@ async function embedDocuments(documents) {
         const { vector } = await context.getEmbeddingFor(document);        
         // node:sqlite requires Uint8Array for BLOB values, so a bit awkward
         insertStmt.run(BigInt(index + 1), document, convertFloat32ArrayToUint8Array(vector));
-        // console.debug(
-        //     `${index + 1} / ${documents.length} documents embedded`
-        // );
+        console.debug(
+            `${index + 1} / ${documents.length} documents embedded`
+        );
     })
 }
 
-function findSimilarDocuments(embedding, count = 10) {
+function findSimilarDocuments(embedding, count = 3) {
+    const insertStmt = db.prepare(`INSERT INTO vec_scores(id, embedding_score) 
+                                   VALUES (?, ?)`);
+    // Fetch all embeddings and calculate cosine similarity one by one 
+    const docs = db.prepare(`SELECT id, embedding FROM vec_items`).all();
+    docs.forEach(doc => {        
+        // And insert into score table accordingly...
+        insertStmt.run(BigInt(doc.id), 
+                       embedding.calculateCosineSimilarity(convertUint8ArrayToFloatArray(doc.embedding)));
+    })
+
     // Perform a KNN query like so:
-    const rows = db
-          .prepare(`SELECT id, document, distance
-                    FROM vec_items
-                    WHERE embedding MATCH ? AND k=${count}
-                    ORDER BY distance`)
-          .all(new Uint8Array(new Float32Array(embedding.vector).buffer));
-    
-    return rows; 
+    const selectStmt = `SELECT f1.id, f1.document, f2.embedding_score
+                        FROM vec_items f1, vec_scores f2 
+                        WHERE f1.id = f2.id
+                        ORDER BY f2.embedding_score DESC 
+                        LIMIT ${count} OFFSET 0`;
+
+    return db.prepare(selectStmt).all();
 }
 
-console.log('Please wait while loading...')
-await embedDocuments(documents);
+await embedDocuments(writers);
 findSimilarDocuments(await context.getEmbeddingFor('sample'));
 
 /*

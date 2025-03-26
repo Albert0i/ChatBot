@@ -287,7 +287,8 @@ function findSimilarDocuments(embedding, count = 3) {
     docs.forEach(doc => {        
         // And insert into score table accordingly...
         insertStmt.run(BigInt(doc.id), 
-                       calculateDotProduct(embedding.vector, convertUint8ArrayToFloatArray(doc.embedding)));
+                       calculateCosineSimilarity(embedding.vector, 
+                                                 convertUint8ArrayToFloatArray(doc.embedding)));
     })
 
     // Perform a KNN query like so:
@@ -314,6 +315,17 @@ export function calculateEuclideanDistance(vector1, vector2) {
         throw new TypeError("Both arguments must be arrays.");
     }
     return Math.sqrt(vector1.reduce((sum, val, i) => sum + Math.pow(val - vector2[i], 2), 0));
+}
+```
+```
+export function calculateCosineSimilarity(vector1, vector2) {
+    if (!Array.isArray(vector1) || !Array.isArray(vector2)) {
+        throw new TypeError("Both arguments must be arrays.");
+    }
+    const dotProduct = vector1.reduce((sum, val, i) => sum + val * vector2[i], 0);
+    const magnitude1 = Math.sqrt(vector1.reduce((sum, val) => sum + val * val, 0));
+    const magnitude2 = Math.sqrt(vector2.reduce((sum, val) => sum + val * val, 0));
+    return dotProduct / (magnitude1 * magnitude2);
 }
 ```
 
