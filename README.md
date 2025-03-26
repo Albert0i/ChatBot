@@ -73,6 +73,7 @@ Each of these APIs has its own strengths and is suited for different use cases. 
 - [codegemma-2b-Q4_K_M.gguf](https://huggingface.co/itlwas/codegemma-2b-Q4_K_M-GGUF/tree/main) : fillin.js 
 - [Meta-Llama-3.1-8B-Instruct-Q3_K_M.gguf](https://huggingface.co/bartowski/Meta-Llama-3.1-8B-Instruct-GGUF) : completion.js, function.js, raw.js, schema.js, summarize.js
 - [mistral-7b-instruct-v0.2.Q4_K_M.gguf](https://huggingface.co/TheBloke/Mistral-7B-Instruct-v0.2-GGUF) : chatbot.js 
+- [paraphrase-MiniLM-L6-v2.i1-IQ1_S.gguf](https://huggingface.co/sentence-transformers/paraphrase-MiniLM-L6-v2) : writers.js
 
 
 #### VII. Useful utilities

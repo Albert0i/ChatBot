@@ -5,7 +5,7 @@
  */
 import { DatabaseSync } from "node:sqlite";
 import { writers } from '../data/writers100.js'
-import { convertUint8ArrayToFloatArray } from './util/helper.js'
+import { convertFloat32ArrayToUint8Array, convertUint8ArrayToFloatArray } from './util/helper.js'
 import {fileURLToPath} from "url";
 import path from "path";
 import {getLlama} from "node-llama-cpp";
@@ -45,9 +45,9 @@ db.exec(`CREATE TABLE vec_items (
          )`);
 db.exec(`CREATE TABLE vec_scores (
             id INTEGER PRIMARY KEY,
-            embedding_score FLOAT
+            score FLOAT
          ); 
-         CREATE INDEX idx_vec_scores ON vec_scores (embedding_score);
+         CREATE INDEX idx_vec_scores ON vec_scores (score);
        `); 
 
 async function embedDocuments(documents) {
@@ -59,14 +59,15 @@ async function embedDocuments(documents) {
         // node:sqlite requires Uint8Array for BLOB values, so a bit awkward
         insertStmt.run(BigInt(index + 1), document, convertFloat32ArrayToUint8Array(vector));
         console.debug(
-            `${index + 1} / ${documents.length} documents embedded`
+            `${index + 1} / ${documents.length} "${document}" embedded`
         );
     })
 }
 
-function findSimilarDocuments(embedding, count = 3) {
-    const insertStmt = db.prepare(`INSERT INTO vec_scores(id, embedding_score) 
+function findSimilarDocuments(embedding, count = 10) {    
+    const insertStmt = db.prepare(`INSERT INTO vec_scores(id, score) 
                                    VALUES (?, ?)`);
+    db.prepare('DELETE FROM vec_scores').run();
     // Fetch all embeddings and calculate cosine similarity one by one 
     const docs = db.prepare(`SELECT id, embedding FROM vec_items`).all();
     docs.forEach(doc => {        
@@ -76,30 +77,31 @@ function findSimilarDocuments(embedding, count = 3) {
     })
 
     // Perform a KNN query like so:
-    const selectStmt = `SELECT f1.id, f1.document, f2.embedding_score
+    const selectStmt = `SELECT f1.id, f1.document, f2.score
                         FROM vec_items f1, vec_scores f2 
                         WHERE f1.id = f2.id
-                        ORDER BY f2.embedding_score DESC 
+                        ORDER BY f2.score DESC 
                         LIMIT ${count} OFFSET 0`;
 
     return db.prepare(selectStmt).all();
 }
 
 await embedDocuments(writers);
-findSimilarDocuments(await context.getEmbeddingFor('sample'));
+await findSimilarDocuments(await context.getEmbeddingFor('sample'));
 
 /*
    main
 */
-const askQuestion = () => {
+console.log()
+const askQuestion = () => {    
     rl.question('Input: ', async (query) => {
         const queryEmbedding = await context.getEmbeddingFor(query);
         const similarDocuments = findSimilarDocuments(queryEmbedding);
         
         for (let i = 0; i < similarDocuments.length; i++) {
-            console.log(`Element[${i+1}]: ${similarDocuments[i].document}, ${similarDocuments[i].distance}`);
+            console.log(`Element[${i+1}]: ${similarDocuments[i].document}, ${similarDocuments[i].score}`);
         }
-
+        console.log()
         askQuestion(); // Recurse to ask the question again
     });
 };
