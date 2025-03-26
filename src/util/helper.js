@@ -41,3 +41,12 @@ export function calculateEuclideanDistance(vector1, vector2) {
     }
     return Math.sqrt(vector1.reduce((sum, val, i) => sum + Math.pow(val - vector2[i], 2), 0));
 }
+
+export function convertFloatArrayToArray(float_array, count = 384) {
+    const arr = [];
+    
+    for (let i = 0; i < count; i++) {
+        arr.push(float_array[i]); // Fills the array with indices 0 to 383
+    }
+    return arr
+}
