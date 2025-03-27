@@ -65,7 +65,7 @@ CREATE TABLE vec_items (
     embedding float_array_384
 );
 
-INSERT INTO vec_items (document, embedding) VALUES ('testing', float_array(1.1, 1.2, 1.3, 1.4, ..., 1.384));
+INSERT INTO vec_items (document, embedding) VALUES ('testing', float_array_384(1.1, 1.2, 1.3, 1.4, ..., 1.384));
 ```
 
 The second step is to get a model and transform the text value into vector which is a high dimension array programmatically. In our case, we first populate the vec_items table with document column and then run the embedder.js to fill in the embedding field: 
