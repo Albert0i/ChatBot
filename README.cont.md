@@ -23,8 +23,6 @@ CREATE TABLE items (
 CREATE INDEX items_fts ON items(document) INDEXTYPE IS CTXSYS.CONTEXT;
 ```
 
-**Basic**
-
 To search for documents containing "maria":
 ```
 SELECT * FROM items
@@ -42,8 +40,6 @@ To search for documents containing either "chan" OR "wong":
 SELECT * FROM items
 WHERE CONTAINS(document, 'chan OR wong') > 0;
 ```
-
-**Combination**
 
 To search for documents containing "example" and either "test" or "sample":
 ```sql
