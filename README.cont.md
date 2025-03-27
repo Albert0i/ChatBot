@@ -55,6 +55,7 @@ WHERE CONTAINS(document, 'chan NOT maria') > 0;
 
 
 #### III. Semantic search
+The first step towards semantic search is to create [vector embeddings](https://redis.io/glossary/vector-embeddings/) to capture *semantics* of text to be searched for. 
 ```
 CREATE OR REPLACE TYPE float_array_384 AS VARRAY(384) OF BINARY_FLOAT;
 
@@ -64,14 +65,17 @@ CREATE TABLE vec_items (
     embedding float_array_384
 );
 
-CREATE INDEX vec_items_fts ON vec_items(document) INDEXTYPE IS CTXSYS.CONTEXT;
-
-INSERT INTO vec_items (document, embedding) VALUES ('testing', float_array(1.1, 1.2, 1.3, 1.4));
-
-SELECT * FROM vec_items
-WHERE CONTAINS(document, 'maria') > 0;
+INSERT INTO vec_items (document, embedding) VALUES ('testing', float_array(1.1, 1.2, 1.3, 1.4, ..., 1.384));
 ```
 
+The second step is to get a model and transform the text value into vector which is a high dimension array programmatically. In our case, we first populate the vec_items table with document column and then run the embedder.js to fill in the embedding field: 
+```
+node src/embedder.js 
+```
+
+The embedding process is slow and take quite a while to finish. The last step is to use the vector embedding to perform a semantic search. 
+```
+```
 
 #### II. Embedding the data 
 ```
