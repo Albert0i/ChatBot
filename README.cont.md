@@ -75,14 +75,14 @@ Insert data like so...
 INSERT INTO vec_items (document, embedding) VALUES ('testing', float_array_384(1.1, 1.2, 1.3, 1.4));
 ```
 
-The second step is to get a model and transform the text value into vector, which is a high dimension array, programmatically. In our example, we load the document field with some text in `vec_items`. And run the embedder to fill in the embedding field. 
+The second step is to get a model and transform the text value into vector, which is a high dimension array, programmatically. In our example, we load the `document` field with some text in `vec_items`. And run the embedder to fill in the `embedding` field. 
 ```
 node src/embedder.js 
 ```
 
 The embedding process is slow and takes quite a while to finish. After that we can use the embeddings to search documents *semantically*... But... how we do that? 
 
-To determine if how near or how far two vectors are we have to get a kind of measurement of distance. [Cosine Similarity and Cosine Distance Explained](https://github.com/Albert0i/RedisVectorSearch/blob/main/cosine.md) is one of the most popular way to do that. 
+To determine how near or how far of two vectors are we have to get a kind of measurement of distance. [Cosine Similarity and Cosine Distance Explained](https://github.com/Albert0i/RedisVectorSearch/blob/main/cosine.md) is a common approach. 
 
 Create a user defined function `cosine_similarity`: 
 ```
@@ -119,10 +119,10 @@ Take a shot like so...
 ```
 SELECT cosine_similarity(float_array_384(1.1, 1.2, 1.3, 1.4), 
                          float_array_384(1.1, 1.2, 1.5, 1.6)) 
-FROM dual
+FROM dual;
 ```
 
-Run start the searcher with: 
+Start the searcher with: 
 ```
 node src/searchersUDF.js
 ```
