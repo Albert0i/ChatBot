@@ -8,9 +8,9 @@
 #### I. Text Searching
 There exists three *levels* of search capability in relational database: 
 
-1. Text scan, the [LIKE](https://www.w3schools.com/sql/sql_like.asp) operator in a `WHERE` clause one uses everyday to search for a specified pattern in a column. 
-2. Full-text search, a technique that finds specific information within a large corpus of text. It goes beyond keyword matching, and analyzes the content of documents to identify relevant results based on the user's search query
-3. Semantic search, search engine technology that interprets the meaning of words and phrases. The results of a semantic search will return content matching the meaning of a query, as opposed to content that literally matches words in the query.
+1. **Text scan**, the [LIKE](https://www.w3schools.com/sql/sql_like.asp) operator in a `WHERE` clause one uses everyday to search for a specified pattern in a column. 
+2. **Full-text search**, a technique that finds specific information within a large corpus of text. It goes beyond keyword matching, and analyzes the content of documents to identify relevant results based on the user's search query
+3. **Semantic search**, search engine technology that interprets the meaning of words and phrases. The results of a semantic search will return content matching the meaning of a query, as opposed to content that literally matches words in the query.
 
 
 #### II. Full-text search
