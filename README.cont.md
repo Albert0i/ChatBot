@@ -56,7 +56,7 @@ WHERE CONTAINS(document, 'chan NOT maria') > 0;
 
 
 #### III. Semantic search
-The first step towards [semantic search](https://github.com/Albert0i/RedisVectorSearch/blob/main/SemanticSearch.md) is creating [vector embeddings](https://redis.io/glossary/vector-embeddings/) to capture *semantics* meaning of text to be searched for. In theory, using [llama-cpp](https://github.com/ggml-org/llama.cpp) along with any RDBMS capable of storing Array of Float can achieve the effect of vector semantic search. To begin with, define a `float_array_384` type to be in storing the embedding. 
+The first step towards [semantic search](https://github.com/Albert0i/RedisVectorSearch/blob/main/SemanticSearch.md) is creating [vector embeddings](https://redis.io/glossary/vector-embeddings/) to capture *semantics* meaning of text to be searched for. In theory, using [llama-cpp](https://github.com/ggml-org/llama.cpp) along with any RDBMS capable of storing Array of Float can achieve the effect of vector semantic search. To begin with, define a `float_array_384` type to be used in storing the embedding. 
 ```
 CREATE OR REPLACE TYPE float_array_384 AS VARRAY(384) OF BINARY_FLOAT;
 ```
