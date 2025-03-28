@@ -154,7 +154,7 @@ async function findSimilarDocuments(embedding, count = 10) {
 
 
 #### IV. Summary 
-In the year of 2025, I am deeply absorbed in the idea of semantic search... It is COOL, simply because how can a computer understand the meaning of a sentence... Redis was my first step, everything there is easy-peasy, as Redis is meant for that and built for that. Later on I learn about [node-llama-cpp](https://www.npmjs.com/package/@node-llama-cpp/linux-x64), [pgvector](https://github.com/pgvector/pgvector) and [sqlite-vec](https://github.com/asg017/sqlite-vec). 
+In the year of 2025, I am deeply absorbed in the idea of semantic search... It is COOL! How can a computer understand the meaning of a sentence? Redis was my first step, everything there is easy-peasy, as Redis is meant for that and built for that. Later on I learn about [node-llama-cpp](https://www.npmjs.com/package/@node-llama-cpp/linux-x64), [pgvector](https://github.com/pgvector/pgvector) and [sqlite-vec](https://github.com/asg017/sqlite-vec). 
 
 Extraction of semantics of text relies on a model. Different models, of different size and different capability, serve different purposes and there are many pre-trained models available. The one I use here is [paraphrase-MiniLM-L6-v2.i1-IQ1_S.gguf](https://huggingface.co/mradermacher/paraphrase-MiniLM-L6-v2-i1-GGUF/tree/main) (17.8 MB) which is a variant of the **paraphrase-MiniLM-L6-v2** model, and is part of the **sentence-transformers** family. This model is designed to map sentences and paragraphs to a 384-dimensional dense vector space, making it useful for tasks like clustering, semantic search, and sentence similarity[1](https://huggingface.co/sentence-transformers/paraphrase-MiniLM-L6-v2). 
 
