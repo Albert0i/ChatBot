@@ -160,7 +160,7 @@ Extraction of semantics of text relies on a model. Different models, of differen
 
 RDBMS is for office tasks while NoSQL is to tackle real life issues. Most data to be used in office are formulated and normalized in table format. These structured data are particularly fitted to be handled in relational database. Real life data are more un-structured than semi-structured, this poses tremendous challenge on storing as well as processing them in day-to-day life. 
 
-Talking about AI, it should be considered as helpers to human being ONLY. If you have an idea to do something, AI provides a good project layout and starter code for you. Still some answers make you deviated and gone astray. Always remember that you are the master of your own, AI is a servant, is a tool to help. When it does then drop it. 
+Talking about AI, it should be considered as helpers to human being ONLY. If you have an idea to do something, AI provides a good project layout and starter code for you. Still some answers make you deviated and gone astray. Always remember that you are the master of your own, AI is a servant, is a tool to help. When it does, drop it!
 
 I wish this document remains undisclosed since some of the testing detail is inconvenient to pen down. 
 
