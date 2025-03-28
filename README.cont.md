@@ -70,19 +70,20 @@ CREATE TABLE vec_items (
     embedding float_array_384
 );
 ```
-Insert data like so...
+
+Take a shot like so... 
 ```
 INSERT INTO vec_items (document, embedding) VALUES ('testing', float_array_384(1.1, 1.2, 1.3, 1.4));
 ```
 
-The second step is to get a model and transform the text value into vector, which is a high dimension array, programmatically. In our example, we load the `document` field with some text in `vec_items`. And run the embedder to fill in the `embedding` field. 
+The second step is to get a model and transform the text value into vector, which is a high dimension array, *programmatically*. In our example, we somehow load the `document` field in `vec_items`. And run the embedder to fill in the `embedding` field. 
 ```
 node src/embedder.js 
 ```
 
-The embedding process is slow and takes quite a while to finish. After that we can use the embeddings to search documents *semantically*... But... how we do that? 
+The embedding process is slow and takes quite a while to finish. After that we can use the embeddings to search documents... But... how we do that? 
 
-To determine how near or how far of two vectors are we have to get a kind of measurement of distance. [Cosine Similarity and Cosine Distance Explained](https://github.com/Albert0i/RedisVectorSearch/blob/main/cosine.md) is a common approach. 
+To determine how near or how far of two given vectors, we have to get a kind of measurement of distance, [Cosine Similarity and Cosine Distance Explained](https://github.com/Albert0i/RedisVectorSearch/blob/main/cosine.md) is a common approach. 
 
 Create a user defined function `cosine_similarity`: 
 ```
@@ -162,7 +163,7 @@ RDBMS is for office tasks while NoSQL is to tackle real life issues. Most data t
 
 Talking about AI, it should be considered as helpers to human being ONLY. If you have an idea to do something, AI provides a good project layout and starter code for you. Still some answers make you deviated and gone astray. Always remember that you are the master of your own, AI is a servant, is a tool to help. When it does, drop it!
 
-I wish this document remains undisclosed since some of the testing detail is inconvenient to pen down. 
+I wish this document remains undisclosed since some of the testing detail is inconvenient to discuss and inappropriate to pen down. The idea here is that it is possible to implement vector semantic search in Oracle 19c on your own. 
 
 
 #### V. Bibliography
